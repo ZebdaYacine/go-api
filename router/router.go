@@ -10,5 +10,7 @@ func GetRouting() *mux.Router {
 	// Define routes
 	router.HandleFunc("/", Handler.HomeHandler).Methods("GET")
 	router.HandleFunc("/about", Handler.AboutHandler).Methods("GET")
+	router.HandleFunc("/search", Handler.SearchHandler).Methods("POST")
+	router.HandleFunc("/Ask", Handler.AskQuestion).Methods("POST")
 	return router
 }
