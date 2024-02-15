@@ -5,16 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 
+	config "example.com/go-api/config"
 	"example.com/go-api/model"
 )
 
 func SendQuestion(question string) {
-	// API endpoint URL
-	apiUrl := os.Getenv("OPENAI_API_URL")
-	apiKey := os.Getenv("API_KEY")
-	fmt.Println(">>>>>>>>> " + apiUrl + apiKey)
 	// Request payload
 	requestBody := model.RequestBody{
 		Model: "gpt-3.5-turbo",
@@ -34,7 +30,7 @@ func SendQuestion(question string) {
 	}
 
 	// Create HTTP request
-	req, err := http.NewRequest("POST", apiUrl, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", config.Api_url, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		return
@@ -42,7 +38,7 @@ func SendQuestion(question string) {
 
 	// Add headers if needed
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("Authorization", "Bearer "+config.Api_key)
 
 	// Send the request
 	client := &http.Client{}
