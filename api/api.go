@@ -5,16 +5,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"example.com/go-api/model"
 )
 
 func SendQuestion(question string) {
 	// API endpoint URL
-	//apiUrl := os.Getenv("OPENAI_API_URL")
-	//apiKey := os.Getenv("API_KEY")
-	apiKey := "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"
-
+	apiUrl := os.Getenv("OPENAI_API_URL")
+	apiKey := os.Getenv("API_KEY")
+	fmt.Println(">>>>>>>>> " + apiUrl + apiKey)
 	// Request payload
 	requestBody := model.RequestBody{
 		Model: "gpt-3.5-turbo",
@@ -34,7 +34,7 @@ func SendQuestion(question string) {
 	}
 
 	// Create HTTP request
-	req, err := http.NewRequest("POST", "https://api.openai.com/v1/chat/completions", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", apiUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		return
