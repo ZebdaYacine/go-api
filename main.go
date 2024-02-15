@@ -17,7 +17,7 @@ func main() {
 	}
 	// Start the HTTP server
 	log.Println("Server started on : 3001")
-	log.Fatal(http.ListenAndServe(":"+config.Ip_server, router.GetRouting()))
+	log.Fatal(http.ListenAndServe(":"+config.Port_server, router.GetRouting()))
 	godotenv.Load(".env")
 
 }
