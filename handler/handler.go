@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"example.com/go-api/api"
+	api "example.com/go-api/api"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
